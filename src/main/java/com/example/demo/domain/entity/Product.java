@@ -1,7 +1,9 @@
-package com.example.demo.domain;
+package com.example.demo.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity(name = "product")
 @Table(name = "product")
@@ -12,10 +14,11 @@ import lombok.*;
 @EqualsAndHashCode(of = "product_id")
 public class Product
 {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long product_id;
 
     private String description;
 
     private double price;
+
 }
