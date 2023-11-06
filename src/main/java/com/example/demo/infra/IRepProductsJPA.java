@@ -1,4 +1,4 @@
-package com.example.demo.persistence;
+package com.example.demo.infra;
 
 import com.example.demo.domain.entity.Product;
 import org.springframework.data.repository.CrudRepository;
