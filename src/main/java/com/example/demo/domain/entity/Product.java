@@ -21,4 +21,7 @@ public class Product
 
     private double price;
 
+    @OneToMany(mappedBy = "product")
+    private List<Stock> stocks;
+
 }

@@ -22,12 +22,7 @@ public class WareHouse
 
     private enum Location { BRAZIL, CHILE, BOLIVIA };
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_warehouse",
-            joinColumns = @JoinColumn(name = "warehouse_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+    @OneToMany(mappedBy = "warehouse")
+    private List<Stock> stocks;
 
 }
