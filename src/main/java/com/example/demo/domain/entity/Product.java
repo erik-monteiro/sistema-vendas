@@ -1,5 +1,6 @@
 package com.example.demo.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Product
     private double price;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<Stock> stocks;
 
 }

@@ -13,6 +13,10 @@ public class AvailableProducts
     @Autowired
     private StockService stockService;
 
+    public AvailableProducts(StockService stockService) {
+        this.stockService = stockService;
+    }
+
     public List<Product> run() {
         return stockService.availableProducts();
     }

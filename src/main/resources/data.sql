@@ -9,9 +9,9 @@ VALUES
 INSERT INTO warehouse
     (warehouse_id, location)
 VALUES
-    (1, 0),
-    (2, 1),
-    (3, 2);
+    (1, 'BRAZIL'),
+    (2, 'CHILE'),
+    (3, 'BOLIVIA');
 
 INSERT INTO stock
     (stock_id, warehouse_id, product_id, max_quantity, min_quantity, current_quantity)

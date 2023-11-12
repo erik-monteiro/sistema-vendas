@@ -18,6 +18,7 @@ public class WareHouse
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long warehouse_id;
 
+    @Enumerated(EnumType.STRING)
     private Location location;
 
     private enum Location { BRAZIL, CHILE, BOLIVIA };

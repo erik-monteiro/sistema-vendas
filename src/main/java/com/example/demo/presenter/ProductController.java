@@ -1,9 +1,8 @@
-package com.example.demo.Interface;
+package com.example.demo.presenter;
 
 import com.example.demo.application.AvailableProducts;
 import com.example.demo.domain.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
