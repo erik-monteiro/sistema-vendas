@@ -23,8 +23,18 @@ public class Item
     @JoinColumn(name = "order_id")
     private Order order;
 
-    private Long product_id;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     private int quantity;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
 

@@ -26,4 +26,8 @@ public class Product
     @JsonIgnore
     private List<Stock> stocks;
 
+    public double getPrice() {
+        return price;
+    }
+
 }

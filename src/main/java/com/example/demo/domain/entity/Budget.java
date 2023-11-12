@@ -31,4 +31,32 @@ public class Budget
     private double discount;
 
     private double finalCost;
+
+    public void setTotalCost(double cost) {
+        this.totalCost = cost;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public void setFinalCost(double finalCost) {
+        this.finalCost = finalCost;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }
