@@ -7,10 +7,6 @@ import java.util.Date;
 
 @Entity(name = "budget")
 @Table(name = "budget")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "budget_id")
 public class Budget
 {
@@ -58,5 +54,9 @@ public class Budget
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public double getDiscount() {
+        return discount;
     }
 }

@@ -41,5 +41,9 @@ public class Order
     public void setItems(List<Item> itemList) {
         this.items = itemList;
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }
 

@@ -8,21 +8,21 @@ VALUES
     (130, 'Panela de Pressão', 350.0);
 
 -- Inserir dados na tabela 'orders'
-INSERT INTO orders (order_id, client_name) VALUES (1, 'Marcio');
+INSERT INTO orders (order_id, client_name) VALUES (0, 'Marcio');
 
 -- Inserir dados na tabela 'budget'
 INSERT INTO budget
     (budget_id, date, order_id, client_name, total_cost, discount, final_cost)
 VALUES
-    (1, CURRENT_DATE(), 1, 'Marcio', 500.0, 50.0, 450.0);
+    (0, CURRENT_DATE(), 0, 'Marcio', 500.0, 50.0, 450.0);
 
 -- Inserir dados na tabela 'item'
 INSERT INTO item
     (order_id, product_id, quantity)
 VALUES
-    (1, 100, 2),
-    (1, 110, 1),
-    (1, 120, 3);
+    (0, 100, 2),
+    (0, 110, 1),
+    (0, 120, 3);
 
 -- Inserir dados na tabela galpões
 INSERT INTO warehouse

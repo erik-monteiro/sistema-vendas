@@ -1,5 +1,6 @@
-package com.example.demo.domain;
+package com.example.demo.domain.service;
 
+import com.example.demo.domain.IRepProducts;
 import com.example.demo.domain.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
