@@ -48,6 +48,10 @@ public class Budget
         this.finalCost = finalCost;
     }
 
+    public void setBudget_id(Long budget_id) {
+        this.budget_id = budget_id;
+    }
+
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }

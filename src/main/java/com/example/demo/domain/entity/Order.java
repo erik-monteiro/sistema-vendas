@@ -7,10 +7,6 @@ import java.util.List;
 
 @Entity(name = "order")
 @Table(name = "orders")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "order_id")
 public class Order
 {

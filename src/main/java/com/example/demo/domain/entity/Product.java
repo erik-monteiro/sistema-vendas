@@ -30,4 +30,7 @@ public class Product
         return price;
     }
 
+    public Long getId() {
+        return product_id;
+    }
 }

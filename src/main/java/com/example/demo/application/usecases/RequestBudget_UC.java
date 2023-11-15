@@ -1,5 +1,6 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases;
 
+import com.example.demo.application.dto.ItemDTO;
 import com.example.demo.domain.entity.Item;
 import com.example.demo.domain.service.BudgetService;
 import com.example.demo.domain.IRepOrders;
@@ -20,7 +21,7 @@ public class RequestBudget_UC
         this.budgetService = budgetService;
     }
 
-    public Budget run(List<Item> itemList, Long orderId) {
+    public Budget run(List<ItemDTO> itemList, Long orderId) {
         return this.budgetService.createBudget(itemList, orderId);
     }
 

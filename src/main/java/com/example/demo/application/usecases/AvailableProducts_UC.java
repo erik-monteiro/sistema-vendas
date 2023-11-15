@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.usecases;
 
 import com.example.demo.domain.service.StockService;
 import com.example.demo.domain.entity.Product;

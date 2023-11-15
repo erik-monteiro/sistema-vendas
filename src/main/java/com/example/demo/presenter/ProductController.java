@@ -1,6 +1,6 @@
 package com.example.demo.presenter;
 
-import com.example.demo.application.AvailableProducts_UC;
+import com.example.demo.application.usecases.AvailableProducts_UC;
 import com.example.demo.domain.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

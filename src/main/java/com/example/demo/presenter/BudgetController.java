@@ -1,13 +1,11 @@
 package com.example.demo.presenter;
 
-import com.example.demo.application.RequestBudget_UC;
+import com.example.demo.application.dto.ItemDTO;
+import com.example.demo.application.usecases.RequestBudget_UC;
 import com.example.demo.domain.service.BudgetService;
 import com.example.demo.domain.entity.Budget;
 import com.example.demo.domain.entity.Item;
-import com.example.demo.domain.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class BudgetController {
     private BudgetService budgetService;
 
     @PostMapping("/{orderId}")
-    public Budget createBudget(@RequestBody List<Item> itemList, @PathVariable Long orderId) {
+    public Budget createBudget(@RequestBody List<ItemDTO> itemList, @PathVariable Long orderId) {
         return requestBudgetUC.run(itemList, orderId);
     }
 }

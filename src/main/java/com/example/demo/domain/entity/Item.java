@@ -8,10 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity(name = "item")
 @Table(name = "item")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "item_id")
 public class Item
 {
@@ -30,11 +26,19 @@ public class Item
     private int quantity;
 
     public Product getProduct() {
-        return product;
+        return this.product;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
 
