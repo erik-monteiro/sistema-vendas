@@ -15,15 +15,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/budget")
-public class BudgetController
-{
+public class BudgetController {
     @Autowired
     private RequestBudget requestBudget;
 
-    @PostMapping
-    public ResponseEntity createBudget(@RequestBody List<Item> itemList) {
-        //implementar
-        return  ResponseEntity.ok().build();
+    @Autowired
+    private BudgetService budgetService;
+
+    @PostMapping("/{orderId}")
+    public ResponseEntity createBudget(@RequestBody List<Item> itemList, @PathVariable Long orderId) {
+        Order order = requestBudget.getOrderById(orderId);
+
+        if (order == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("O pedido para o ID informado não foi encontrado!");
+        }
+
+        Budget budget = budgetService.requestBudget(itemList, order);
+
+        requestBudget.saveBudget(budget);
+
+        return ResponseEntity.ok().build();
     }
 
 }
