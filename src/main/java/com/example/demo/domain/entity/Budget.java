@@ -26,7 +26,11 @@ public class Budget
 
     private double discount;
 
+    private double tax = 0.1;
+
     private double finalCost;
+
+    private boolean bought;
 
     public void setTotalCost(double cost) {
         this.totalCost = cost;
@@ -62,5 +66,37 @@ public class Budget
 
     public double getDiscount() {
         return discount;
+    }
+
+    public void setBought(boolean bought) {
+        bought = bought;
+    }
+
+    public boolean getBought() {
+        return bought;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getFinalCost() {
+        return finalCost;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
     }
 }

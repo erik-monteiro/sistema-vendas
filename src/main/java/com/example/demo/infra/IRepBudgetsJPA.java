@@ -8,4 +8,5 @@ import java.util.List;
 public interface IRepBudgetsJPA extends CrudRepository<Budget, Long>
 {
     List<Budget> findAll();
+
 }

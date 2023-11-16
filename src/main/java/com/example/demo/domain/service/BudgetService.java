@@ -1,6 +1,6 @@
 package com.example.demo.domain.service;
 
-import com.example.demo.application.dto.ItemDTO;
+import com.example.demo.domain.dto.ItemDTO;
 import com.example.demo.domain.IRepBudgets;
 import com.example.demo.domain.IRepOrders;
 import com.example.demo.domain.IRepProducts;
@@ -16,17 +16,20 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class BudgetService {
+public class BudgetService
+{
+
     private IRepBudgets budgetRep;
     private IRepOrders orderRep;
-
     private IRepProducts productRep;
+    private DiscountPolicyService discountPolicyService;
 
     @Autowired
-    public BudgetService(IRepBudgets iRepBudget, IRepOrders iRepOrders, IRepProducts productRep) {
+    public BudgetService(IRepBudgets iRepBudget, IRepOrders iRepOrders, IRepProducts productRep, DiscountPolicyService discountPolicyService) {
         this.budgetRep = iRepBudget;
         this.orderRep = iRepOrders;
         this.productRep = productRep;
+        this.discountPolicyService = discountPolicyService;
     }
 
     public List<Budget> getAllBudgets() {
@@ -63,9 +66,15 @@ public class BudgetService {
             budget.setDate(new Date());
             budget.setClientName(order.getClientName());
             budget.setOrder(order);
-            budget.setTotalCost(totalCost);
-            budget.setDiscount(0);
-            budget.setFinalCost(100);
+            budget.setTax(0.1);
+
+            budget.setTotalCost(totalCost * (1 + budget.getTax()));
+
+            double discount = discountPolicyService.discountPolicy(order.getClientName());
+            budget.setDiscount((int) discount);
+
+            double finalCost = calculateFinalCost(budget.getTotalCost(), discount);
+            budget.setFinalCost(finalCost);
 
             budgetRep.save(budget);
             return budget;
@@ -74,12 +83,15 @@ public class BudgetService {
         }
     }
 
-
     public double calculateTotalCost(List<Item> itemList) {
         return itemList.stream()
                 .filter(item -> item.getProduct() != null)
                 .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
                 .sum();
+    }
+
+    public double calculateFinalCost(double totalCost, double discount) {
+        return totalCost - (totalCost * discount);
     }
 
 }
