@@ -1,25 +1,21 @@
-package com.example.demo.domain.service;
+package com.example.demo.application.usecases;
 
 import com.example.demo.domain.IRepProducts;
 import com.example.demo.domain.IRepStocks;
-import com.example.demo.domain.entity.Product;
 import com.example.demo.domain.entity.Stock;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class StockService
+public class ManageStock_UC
 {
     private IRepStocks stocksRep;
-    private IRepProducts iRepProducts;
 
     @Autowired
-    public StockService(IRepStocks stocksRep, IRepProducts iRepProducts) {
+    public ManageStock_UC(IRepStocks stocksRep) {
         this.stocksRep = stocksRep;
-        this.iRepProducts = iRepProducts;
     }
 
     public List<Stock> availableStocks() {
@@ -33,9 +29,4 @@ public class StockService
             stocksRep.save(stock);
         }
     }
-
-    public List<Product> availableProducts() {
-        return iRepProducts.all();
-    }
-
 }

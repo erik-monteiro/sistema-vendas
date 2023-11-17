@@ -23,43 +23,45 @@ public class DiscountPolicyService
         this.ordersRep = ordersRep;
     }
 
-    
-
     public double discountPolicy(String clientName) {
         double discount = 0.00;
         if (!clientName.isEmpty()) {
-            List<Order> orders = ordersRep.findByClientName(clientName);
-            
-            int qtdProdutos = 0;
+            if (calculateBudgetValidityDays() == 21 || calculateBudgetValidityDays() == 35) {
+                List<Order> orders = ordersRep.findByClientName(clientName);
 
-            for(int i = 0; i <orders.get(orders.size()-1).getItems().size(); i++){
-                qtdProdutos += orders.get(orders.size()-1).getItems().get(i).getQuantity();
-            }
-            
-            if(!orders.isEmpty() && qtdProdutos > 5){//desconto padrão de 5% para pedidos com mais de 5 itens
-                discount = 0.05;
-            }
+                int qtdProdutos = 0;
 
-            if (!orders.isEmpty() && orders.size() >= 3) {
-                int totalOrders = orders.size();
-                double totalSpent = orders.stream()
-                                    .skip(Math.max(0, orders.size() - 3))
-                                    .mapToDouble(order -> order.getItems().stream().mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity()).sum())
-                                    .sum();//pega apenas os gastos dos ultimos 3 pedidos
-                double averageSpent = totalSpent / 3;
-
-                if (averageSpent > 10000) {
-                    discount = 0.1;
-
-                    discount += Math.min(0.3, Math.floor((averageSpent - 10000) / 10000) * 0.05);//divide a diferença entre gasto medio e 10000 
-                    //por 10000 o valor resultante é multiplicado 0,05 e arredondado para baixo
-                    //em seguida o resultado é comparado com 0,3(desconto maximo) e o valor resultante
-                    //escolhendo o menor valor entre estes, pois o desconto não pode exceder 30%
+                for(int i = 0; i < orders.get(orders.size()-1).getItems().size(); i++){
+                    qtdProdutos += orders.get(orders.size()-1).getItems().get(i).getQuantity();
                 }
 
-                if (totalOrders > 10) {
-                    discount = Math.max(discount, 0.25); //Escolhe o maior desconto entre as políticas
+                if(!orders.isEmpty() && qtdProdutos > 5){ //desconto padrão de 5% para pedidos com mais de 5 itens
+                    discount = 0.05;
                 }
+
+                if (!orders.isEmpty() && orders.size() >= 3) {
+                    int totalOrders = orders.size();
+                    double totalSpent = orders.stream()
+                            .skip(Math.max(0, orders.size() - 3))
+                            .mapToDouble(order -> order.getItems().stream().mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity()).sum())
+                            .sum(); //pega apenas os gastos dos ultimos 3 pedidos
+                    double averageSpent = totalSpent / 3;
+
+                    if (averageSpent > 10000) {
+                        discount = 0.1;
+
+                        discount += Math.min(0.3, Math.floor((averageSpent - 10000) / 10000) * 0.05);//divide a diferença entre gasto medio e 10000
+                        // por 10000 o valor resultante é multiplicado 0,05 e arredondado para baixo
+                        // em seguida o resultado é comparado com 0,3(desconto maximo) e o valor resultante
+                        // escolhendo o menor valor entre estes, pois o desconto não pode exceder 30%
+                    }
+
+                    if (totalOrders > 10) {
+                        discount = Math.max(discount, 0.25); //Escolhe o maior desconto entre as políticas
+                    }
+                }
+            } else {
+                throw new RuntimeException("O orçamento não é mais válido!");
             }
         }
 

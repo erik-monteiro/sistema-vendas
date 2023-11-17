@@ -45,4 +45,8 @@ public class Stock
         int newQuantity = Math.max(0, currentQuantity - quantity);
         setQuantityStock(newQuantity);
     }
+
+    public void setCurrentQuantity(int quantity) {
+        this.currentQuantity = quantity;
+    }
 }

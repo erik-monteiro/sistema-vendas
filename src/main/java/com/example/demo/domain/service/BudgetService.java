@@ -20,7 +20,6 @@ import java.util.List;
 @Service
 public class BudgetService
 {
-
     private IRepBudgets budgetRep;
     private IRepOrders orderRep;
     private IRepProducts productRep;
@@ -51,8 +50,9 @@ public class BudgetService
     
         if (stocks != null && !stocks.isEmpty()) {
             return stocks.get(0); // Escolhe o primeiro estoque associado ao produto
+
         } else {
-            return null; // Caso não haja estoque disponível
+            return null;
         }
     }
     
@@ -65,12 +65,17 @@ public class BudgetService
             Product product = productRep.getById(itemRequest.getProductId());
 
             if (product != null) {
-                // Escolhe um dos estoques associados ao produto
                 Stock stock = chooseStockForProduct(product);
-                item.setProduct(product);
-                item.setQuantity(itemRequest.getQuantity());
-                itemList.add(item);
-                stock.decreaseProductQuantity(itemRequest.getQuantity());
+                assert stock != null;
+                if (stock.getCurrentQuantity() > itemRequest.getQuantity()) {
+
+                    item.setProduct(product);
+                    item.setQuantity(itemRequest.getQuantity());
+                    itemList.add(item);
+                    stock.decreaseProductQuantity(itemRequest.getQuantity());
+                } else {
+                    throw new RuntimeException("O estoque não contém todas as quantidades de produtos do seu pedido.");
+                }
             }
         }
 
@@ -87,10 +92,11 @@ public class BudgetService
             budget.setTotalCost(totalCost * (1 + budget.getTax()));
 
             double discount = discountPolicyService.discountPolicy(order.getClientName());
-            budget.setDiscount(discount*100);
+            budget.setDiscount(discount * 100);
 
             double finalCost = calculateFinalCost(budget.getTotalCost(), discount);
             budget.setFinalCost(finalCost);
+            budget.setBought(true);
 
             budgetRep.save(budget);
             return budget;

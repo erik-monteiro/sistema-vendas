@@ -33,4 +33,8 @@ public class Product
     public Long getId() {
         return product_id;
     }
+
+    public List<Stock> getStocks() {
+        return stocks;
+    }
 }

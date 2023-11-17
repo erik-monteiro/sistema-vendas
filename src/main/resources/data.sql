@@ -19,7 +19,7 @@ INSERT INTO item
 VALUES
     (1, 100, 1),
     (1, 110, 1),
-    (1, 120, 200);
+    (1, 120, 40);
 
 -- Inserir dados na tabela 'item'
 INSERT INTO item
@@ -27,7 +27,7 @@ INSERT INTO item
 VALUES
     (2, 100, 1),
     (2, 110, 1),
-    (2, 120, 200);
+    (2, 120, 40);
 
 -- Inserir dados na tabela 'item'
 INSERT INTO item
@@ -35,14 +35,14 @@ INSERT INTO item
 VALUES
     (3, 100, 1),
     (3, 110, 1),
-    (3, 120, 200);
+    (3, 120, 40);
 
 INSERT INTO item
     (order_id, product_id, quantity)
 VALUES
     (4, 100, 1),
     (4, 110, 1),
-    (4, 120, 200);
+    (4, 120, 40);
 
 -- Inserir dados na tabela galpões
 INSERT INTO warehouse
