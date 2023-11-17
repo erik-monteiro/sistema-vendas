@@ -23,6 +23,10 @@ public class Item
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @ManyToOne
+    @JoinColumn(name = "stock_id")
+    private Stock stock;
+
     private int quantity;
 
     public Product getProduct() {

@@ -29,6 +29,7 @@ public class DiscountPolicyService
         double discount = 0.00;
         if (!clientName.isEmpty()) {
             List<Order> orders = ordersRep.findByClientName(clientName);
+            
             int qtdProdutos = 0;
 
             for(int i = 0; i <orders.get(orders.size()-1).getItems().size(); i++){
@@ -39,7 +40,7 @@ public class DiscountPolicyService
                 discount = 0.05;
             }
 
-            if (!orders.isEmpty()) {
+            if (!orders.isEmpty() && orders.size() >= 3) {
                 int totalOrders = orders.size();
                 double totalSpent = orders.stream()
                                     .skip(Math.max(0, orders.size() - 3))

@@ -31,4 +31,18 @@ public class Stock
     private int minQuantity;
 
     private int currentQuantity;
+
+    public int getCurrentQuantity(){
+        return this.currentQuantity;
+    }
+
+    public void setQuantityStock(int quantity){
+        this.currentQuantity = quantity;
+    }
+
+    public void decreaseProductQuantity(int quantity) {
+        int currentQuantity = getCurrentQuantity();
+        int newQuantity = Math.max(0, currentQuantity - quantity);
+        setQuantityStock(newQuantity);
+    }
 }

@@ -8,6 +8,8 @@ import com.example.demo.domain.entity.Budget;
 import com.example.demo.domain.entity.Item;
 import com.example.demo.domain.entity.Order;
 import com.example.demo.domain.entity.Product;
+import com.example.demo.domain.entity.Stock;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,17 @@ public class BudgetService
         return orderRep.getById(orderId);
     }
 
+    private Stock chooseStockForProduct(Product product) {
+        List<Stock> stocks = product.getStocks();
+    
+        if (stocks != null && !stocks.isEmpty()) {
+            return stocks.get(0); // Escolhe o primeiro estoque associado ao produto
+        } else {
+            return null; // Caso não haja estoque disponível
+        }
+    }
+    
+
     public Budget createBudget(List<ItemDTO> itemRequests, Long orderId) {
         List<Item> itemList = new ArrayList<>();
 
@@ -52,9 +65,12 @@ public class BudgetService
             Product product = productRep.getById(itemRequest.getProductId());
 
             if (product != null) {
+                // Escolhe um dos estoques associados ao produto
+                Stock stock = chooseStockForProduct(product);
                 item.setProduct(product);
                 item.setQuantity(itemRequest.getQuantity());
                 itemList.add(item);
+                stock.decreaseProductQuantity(itemRequest.getQuantity());
             }
         }
 
