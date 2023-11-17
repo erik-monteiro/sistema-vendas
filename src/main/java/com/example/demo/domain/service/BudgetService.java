@@ -71,7 +71,7 @@ public class BudgetService
             budget.setTotalCost(totalCost * (1 + budget.getTax()));
 
             double discount = discountPolicyService.discountPolicy(order.getClientName());
-            budget.setDiscount((int) discount);
+            budget.setDiscount(discount*100);
 
             double finalCost = calculateFinalCost(budget.getTotalCost(), discount);
             budget.setFinalCost(finalCost);

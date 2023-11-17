@@ -44,7 +44,7 @@ public class Budget
         this.date = date;
     }
 
-    public void setDiscount(int discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 

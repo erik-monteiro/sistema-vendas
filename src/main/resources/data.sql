@@ -9,14 +9,32 @@ VALUES
 
 -- Inserir dados na tabela 'orders'
 INSERT INTO orders (order_id, client_name) VALUES (1, 'Marcio');
+INSERT INTO orders (order_id, client_name) VALUES (2, 'Marcio');
+INSERT INTO orders (order_id, client_name) VALUES (3, 'Marcio');
 
 -- Inserir dados na tabela 'item'
 INSERT INTO item
     (order_id, product_id, quantity)
 VALUES
-    (1, 100, 2),
+    (1, 100, 1),
     (1, 110, 1),
-    (1, 120, 3);
+    (1, 120, 1);
+
+-- Inserir dados na tabela 'item'
+INSERT INTO item
+    (order_id, product_id, quantity)
+VALUES
+    (2, 100, 1),
+    (2, 110, 1),
+    (2, 120, 1);
+
+-- Inserir dados na tabela 'item'
+INSERT INTO item
+    (order_id, product_id, quantity)
+VALUES
+    (3, 100, 1),
+    (3, 110, 1),
+    (3, 120, 1);
 
 -- Inserir dados na tabela galpões
 INSERT INTO warehouse
@@ -30,7 +48,7 @@ VALUES
 INSERT INTO stock
     (warehouse_id, product_id, max_quantity, min_quantity, current_quantity)
 VALUES
-    (1, 100, 100, 10, 50),
-    (1, 110, 50, 5, 30),
-    (1, 120, 75, 7, 40),
-    (2, 130, 90, 9, 60);
+    (1, 100, 100, 10, 50000),
+    (1, 110, 50, 5, 30000),
+    (1, 120, 75, 7, 40000),
+    (2, 130, 90, 9, 60000);
