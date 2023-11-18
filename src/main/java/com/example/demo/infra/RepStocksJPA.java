@@ -33,14 +33,36 @@ public class RepStocksJPA implements IRepStocks
     }
 
     @Override
-public Stock findByStock(long id) {
-    Optional<Stock> foundStock = iRepStocksJPA.findAll()
-            .stream()
-            .filter(s -> s.getStock_id() == id)
-            .findFirst();
+    public Stock findByStock(long id) {
+        Optional<Stock> foundStock = iRepStocksJPA.findAll()
+                .stream()
+                .filter(s -> s.getStock_id() == id)
+                .findFirst();
 
-    return foundStock.orElse(null);
-}
+        return foundStock.orElse(null);
+    }
+
+    @Override
+    public Stock findByProductId(long productId) {
+        Optional<Stock> foundStock = iRepStocksJPA.findAll()
+                .stream()
+                .filter(s -> s.getProduct().getId() == productId)
+                .findFirst();
+
+        return foundStock.orElse(null);
+    }
+
+    @Override
+    public void decreaseProductQuantity(int quantity, long productId) {
+        Stock stock = findByProductId(productId);
+
+        if (stock != null) {
+            int currentQuantity = stock.getCurrentQuantity();
+            int newQuantity = Math.max(0, currentQuantity - quantity);
+            stock.setCurrentQuantity(newQuantity);
+            save(stock);
+        }
+    }
 
 
 }

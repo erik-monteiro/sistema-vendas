@@ -1,5 +1,6 @@
 package com.example.demo.domain.service;
 
+import com.example.demo.domain.IRepStocks;
 import com.example.demo.domain.dto.ItemDTO;
 import com.example.demo.domain.IRepBudgets;
 import com.example.demo.domain.IRepOrders;
@@ -10,6 +11,7 @@ import com.example.demo.domain.entity.Order;
 import com.example.demo.domain.entity.Product;
 import com.example.demo.domain.entity.Stock;
 
+import com.example.demo.infra.IRepStocksJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,14 +25,16 @@ public class BudgetService
     private IRepBudgets budgetRep;
     private IRepOrders orderRep;
     private IRepProducts productRep;
+    private IRepStocks stocksRep;
     private DiscountPolicyService discountPolicyService;
 
     @Autowired
-    public BudgetService(IRepBudgets iRepBudget, IRepOrders iRepOrders, IRepProducts productRep, DiscountPolicyService discountPolicyService) {
+    public BudgetService(IRepBudgets iRepBudget, IRepOrders iRepOrders, IRepProducts productRep, DiscountPolicyService discountPolicyService, IRepStocks iRepStocks) {
         this.budgetRep = iRepBudget;
         this.orderRep = iRepOrders;
         this.productRep = productRep;
         this.discountPolicyService = discountPolicyService;
+        this.stocksRep = iRepStocks;
     }
 
     public List<Budget> getAllBudgets() {
@@ -68,11 +72,10 @@ public class BudgetService
                 Stock stock = chooseStockForProduct(product);
                 assert stock != null;
                 if (stock.getCurrentQuantity() > itemRequest.getQuantity()) {
-
                     item.setProduct(product);
                     item.setQuantity(itemRequest.getQuantity());
                     itemList.add(item);
-                    stock.decreaseProductQuantity(itemRequest.getQuantity());
+                    stocksRep.decreaseProductQuantity(itemRequest.getQuantity(), product.getId());
                 } else {
                     throw new RuntimeException("O estoque não contém todas as quantidades de produtos do seu pedido.");
                 }

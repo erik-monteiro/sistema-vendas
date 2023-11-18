@@ -40,13 +40,15 @@ public class Stock
         this.currentQuantity = quantity;
     }
 
-    public void decreaseProductQuantity(int quantity) {
-        int currentQuantity = getCurrentQuantity();
-        int newQuantity = Math.max(0, currentQuantity - quantity);
-        setQuantityStock(newQuantity);
-    }
-
     public void setCurrentQuantity(int quantity) {
         this.currentQuantity = quantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public long getStock_id() {
+        return stock_id;
     }
 }

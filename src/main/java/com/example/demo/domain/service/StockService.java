@@ -26,14 +26,6 @@ public class StockService
         return stocksRep.all();
     }
 
-    public void setQuantity(long id, int quantity){
-        Stock stock = stocksRep.findByStock(id);
-        if (stock != null) {
-            stock.setCurrentQuantity(quantity);
-            stocksRep.save(stock);
-        }
-    }
-
     public List<Product> availableProducts() {
         return iRepProducts.all();
     }

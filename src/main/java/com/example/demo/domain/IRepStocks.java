@@ -15,4 +15,8 @@ public interface IRepStocks
 
     Stock findByStock(long id);
 
+    Stock findByProductId(long productId);
+
+    void decreaseProductQuantity(int quantity, long productId);
+
 }

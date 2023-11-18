@@ -26,16 +26,7 @@ public class WareHouse
     @OneToMany(mappedBy = "warehouse")
     private List<Stock> stocks;
 
-    public void decreaseProductQuantity(Product product, int quantity) {
-        List<Stock> stocks = getStocks(); // Obtém a lista de estoques associados ao armazém
-
-        for (Stock stock : stocks) {
-            if (stock.getProduct().equals(product)) {
-                int currentQuantity = stock.getCurrentQuantity();
-                int newQuantity = Math.max(0, currentQuantity - quantity);
-                stock.setQuantityStock(newQuantity);
-                return; // Sai do loop após encontrar o estoque do produto
-            }
-        }
+    private List<Stock> getStocks() {
+        return stocks;
     }
 }
