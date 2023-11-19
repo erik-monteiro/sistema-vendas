@@ -12,10 +12,12 @@ import java.util.List;
 @Service
 public class OrderStatisticService {
     private IRepOrders ordersRep;
+    //private IRepBudgets budgetsRep;
 
     @Autowired
-    public OrderStatisticService(IRepOrders iRepOrders) {
+    public OrderStatisticService(IRepOrders iRepOrders, IRepBudgets iRepBudgets) {
         this.ordersRep = iRepOrders;
+        //this.budgetsRep = iRepBudgets;
     }
 
     public String calculateAverageItemsPerOrder() {
@@ -32,9 +34,17 @@ public class OrderStatisticService {
                 }
             }
 
-            return "A quantidade média de ITENS por PEDIDO é de: " + (double) totalItems / orders.size();
+            return "A quantidade total de pedidos é de: " + orders.size() + ".\n" 
+            + "A quantidade média de ITENS por PEDIDO é de: R$" + (double) totalItems / orders.size() + ".\n";
         }
 
-        return "A quantidade média de ITENS por PEDIDOo é de: 0";
+        return "A quantidade total de pedidos é de: " + orders.size() + ".\n" 
+        + "A quantidade média de ITENS por PEDIDO é de: R$0" + ".\n";
     }
+
+    // public String calculateTheAverageBudgetPerOrder(){
+    //     List<Budgets> budgets = budgetsRep.all()
+    //     return "teste";
+    
+    // }
 }
