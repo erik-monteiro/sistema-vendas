@@ -27,6 +27,9 @@ public class RepOrdersJPA implements IRepOrders
         return orderRepository.findById(orderId).orElse(null);
     }
 
+    @Override
+    public List<Order> getAll() { return orderRepository.findAll(); }
+
      @Override
     public List<Order> findByClientName(String clientName) {
         return orderRepository.findAll()

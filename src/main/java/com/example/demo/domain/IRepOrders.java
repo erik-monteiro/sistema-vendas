@@ -9,6 +9,8 @@ public interface IRepOrders
 {
     Order getById(Long orderId);
 
+    List<Order> getAll();
+
     List<Order> findByClientName(String clientName);
 
 }

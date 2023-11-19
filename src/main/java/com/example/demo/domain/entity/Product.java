@@ -8,10 +8,6 @@ import java.util.List;
 
 @Entity(name = "product")
 @Table(name = "product")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "product_id")
 public class Product
 {
