@@ -69,7 +69,7 @@ public class Budget
     }
 
     public void setBought(boolean bought) {
-        bought = bought;
+        this.bought = bought;
     }
 
     public boolean getBought() {

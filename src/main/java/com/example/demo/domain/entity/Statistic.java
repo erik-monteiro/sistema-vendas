@@ -14,10 +14,16 @@ public class Statistic
 
     private double averageTotalCost;
 
+    private double averageFinalCost;
+
     private int averageItensPerOrder;
 
     public double getAverageTotalCost() {
         return averageTotalCost;
+    }
+
+    public double getAverageFinalCost() {
+        return averageFinalCost;
     }
 
     public int getAverageItensPerOrder() {
@@ -30,5 +36,9 @@ public class Statistic
 
     public void setAverageTotalCost(double averageTotalCost) {
         this.averageTotalCost = averageTotalCost;
+    }
+
+    public void setAverageFinalCost(double averageFinalCost) {
+        this.averageFinalCost = averageFinalCost;
     }
 }
