@@ -35,7 +35,7 @@ public class OrderStatisticService {
             }
 
             return "A quantidade total de pedidos é de: " + orders.size() + ".\n" 
-            + "A quantidade média de ITENS por PEDIDO é de: R$" + (double) totalItems / orders.size() + ".\n";
+            + "A quantidade média de ITENS por PEDIDO é de: " + (double) totalItems / orders.size() + ".\n";
         }
 
         return "A quantidade média de ITENS por PEDIDO é de: 0";
