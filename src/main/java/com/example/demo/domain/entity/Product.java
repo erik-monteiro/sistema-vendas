@@ -9,9 +9,9 @@ import java.util.List;
 @Entity(name = "product")
 @Table(name = "product")
 @EqualsAndHashCode(of = "product_id")
-public class Product
-{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long product_id;
 
     private String description;
@@ -32,5 +32,9 @@ public class Product
 
     public List<Stock> getStocks() {
         return stocks;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
