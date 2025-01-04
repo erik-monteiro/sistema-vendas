@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency> Xz75dwJGjr
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
