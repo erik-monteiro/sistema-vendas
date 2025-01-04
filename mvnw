@@ -204,7 +204,7 @@ else
       case "$key" in (wrapperUrl) wrapperUrl="$safeValue"; break ;;
       esac
     done < "$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.properties"
-    log "Downloading from: $wrapperUrl" CIc9cp4bId
+    log "Downloading from: $wrapperUrl"
 
     if $cygwin; then
       wrapperJarPath=$(cygpath --path --windows "$wrapperJarPath")
